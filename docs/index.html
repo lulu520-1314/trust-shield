@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>信任守护师 · 美妆内容真实性核验</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232f7cf6'/><stop offset='1' stop-color='%2335d39a'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><path d='M16 7.4l6.4 2.8v5.5c0 3.8-2.6 6.7-6.4 7.9-3.8-1.2-6.4-4.1-6.4-7.9v-5.5L16 7.4z' fill='none' stroke='%23fff' stroke-width='1.9' stroke-linejoin='round'/></svg>" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d="M16 7.4l6.4 2.8v5.5c0 3.8-2.6 6.7-6.4 7.9-3.8-1.2-6.4-4.1-6.4-7.9v-5.5L16 7.4z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div>信任守护师
+      <small>美妆内容真实性核验 · 像素级证据链</small>
+    </div>
+  </div>
+  <div class="flow" id="flow">
+    <span class="fs done" data-step="1"><i>1</i>输入</span>
+    <span class="fl"></span>
+    <span class="fs" data-step="2"><i>2</i>取证</span>
+    <span class="fl"></span>
+    <span class="fs" data-step="3"><i>3</i>定级</span>
+    <span class="fl"></span>
+    <span class="fs" data-step="4"><i>4</i>处置</span>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button data-scene="post" class="active">种草图文核验</button>
+    <button data-scene="comments">评论区真实性核验</button>
+    <button data-scene="material">AI 素材鉴伪</button>
+  </nav>
+  <div class="status"><span class="dot"></span><span id="statusText">本地推理 · 就绪</span></div>
+</header>
+
+<main>
+  <!-- 左：输入 -->
+  <div class="col">
+    <div class="card scroll" style="flex:1">
+      <h3>① 输入样本</h3>
+
+      <div id="dropZone">
+        <div class="drop" id="slotA" data-slot="0">
+          <div class="ph"><span id="slotALabel">📷 使用前 / 待检图片</span> <em class="req">必填</em>
+            <br /><span style="font-size:11px">点击或拖入</span></div>
+          <span class="tag hide" id="slotATag">使用前</span>
+        </div>
+        <div class="drop hide" id="slotB" data-slot="1" style="margin-top:8px">
+          <div class="ph">🖼 使用后 / 对比图 <em class="opt">选填</em>
+            <br /><span style="font-size:11px">点击或拖入</span></div>
+          <span class="tag hide">使用后</span>
+        </div>
+      </div>
+      <div class="hint" id="dropHint"></div>
+
+      <div class="field-row">
+        <div class="field-label" id="textLabel"></div>
+        <button type="button" class="doc-btn" id="btnDoc" title="从 .txt / .md / .docx 导入正文">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.6h5.2L12.5 5v9.4a.6.6 0 0 1-.6.6H4a.6.6 0 0 1-.6-.6V2.2a.6.6 0 0 1 .6-.6z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M9.2 1.6V5h3.3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          导入文档</button>
+      </div>
+      <input type="file" id="docInput" accept=".txt,.md,.markdown,.docx,.doc,.csv,.log" hidden />
+      <textarea id="postText" placeholder="粘贴种草文案（标题+正文），用于文体分析与合规扫描…"></textarea>
+      <textarea id="commentsText" class="hide" placeholder="粘贴评论区内容…"></textarea>
+
+      <div class="samples" id="samples"></div>
+      <button class="primary" id="runBtn">开始核验</button>
+    </div>
+  </div>
+
+  <!-- 中：证据 -->
+  <div class="col">
+    <div class="card" style="flex:1; display:flex; flex-direction:column; min-height:0">
+      <h3>② 证据链</h3>
+      <div class="toolbar hide" id="toolbar">
+        <button class="chip active" data-view="fused">融合热图</button>
+        <button class="chip" data-view="ela">ELA</button>
+        <button class="chip" data-view="noise">噪声残差</button>
+        <button class="chip" data-view="smooth">磨皮检测</button>
+        <div class="slider">透明度<input type="range" id="opacity" min="0" max="100" value="72" /></div>
+      </div>
+
+      <div class="scroll" id="centerBody" style="flex:1; min-height:0">
+        <div class="viewer hide" id="viewer">
+          <div class="stage">
+            <img class="base" id="baseImg" alt="" />
+            <img class="heat" id="heatImg" alt="" />
+            <svg class="boxes" id="boxes" preserveAspectRatio="none"></svg>
+          </div>
+        </div>
+
+        <div id="charts" class="hide"></div>
+        <div class="evidence" id="evidence"></div>
+        <div class="empty" id="emptyState">
+          <div>
+            <div class="big">🔍</div>
+            <span id="emptyLine">上传图片与文案，或点左下角的示例样本</span><br />
+            系统会逐层给出可核对的证据，而不是一个概率
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右：结论 -->
+  <div class="col">
+    <div class="card">
+      <h3>③ 风险评定</h3>
+      <div class="gauge-wrap">
+        <svg class="gauge" id="gauge" viewBox="0 0 140 82"></svg>
+        <div>
+          <div class="risk-title" id="riskLabel">—</div>
+          <div class="risk-sub" id="riskSub">等待核验</div>
+        </div>
+      </div>
+      <div class="bars" id="bars"></div>
+    </div>
+
+    <div class="card scroll" style="flex:1; min-height:0">
+      <h3>判定依据</h3>
+      <div class="narrative" id="narrative">—</div>
+      <div class="hits" id="hits"></div>
+    </div>
+
+    <div class="card chat">
+      <h3>对话式核验助手</h3>
+      <div class="msgs" id="msgs">
+        <div class="msg bot">核验完成后可直接提问，或点下方建议。</div>
+      </div>
+      <div class="askchips" id="askChips"></div>
+      <div class="ask">
+        <input id="askInput" placeholder="自由提问，例如「为什么判这个等级」" disabled />
+        <button id="askBtn" disabled>发送</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="loading">
+  <div class="steps" id="steps">
+    <div><span class="n" data-i="0">1</span>像素层取证：ELA / 噪声 / 磨皮 / 频域</div>
+    <div><span class="n" data-i="1">2</span>语义层：文体指纹与模板痕迹</div>
+    <div><span class="n" data-i="2">3</span>合规层：美妆广告法规扫描</div>
+    <div><span class="n" data-i="3">4</span>证据融合与风险分级</div>
+  </div>
+</div>
+
+<script src="./vendor/echarts.min.js"></script>
+<script src="./demo-data.js"></script>
+  <script src="./demo-shim.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

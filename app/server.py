@@ -27,6 +27,11 @@ SAMPLE_CACHE: dict[str, dict] = {}
 app.mount("/static", StaticFiles(directory=WEB), name="static")
 app.mount("/cache", StaticFiles(directory=CACHE), name="cache")
 
+# 静态演示版（docs/ 由 scripts/build_demo.py 生成，GitHub Pages 也用这份）
+DEMO = os.path.join(BASE, "docs")
+if os.path.isdir(DEMO):
+    app.mount("/demo", StaticFiles(directory=DEMO, html=True), name="demo")
+
 
 @app.get("/")
 def index():

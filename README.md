@@ -64,6 +64,9 @@
 
 ## 30 秒跑起来
 
+> **在线演示（只读）**：<https://lulu520-1314.github.io/trust-shield/>
+> 这是预生成结果的静态版，5 组样例可切换查看；**不能上传自己的图片**，完整功能请按下面的方式本地运行。
+
 ```bash
 # 1. 安装依赖（Python 3.10+，只需一次）
 pip install -r requirements.txt

@@ -64,20 +64,58 @@ def make_blob(path: str) -> dict:
     return {"path": path.replace("\\", "/"), "mode": "100644", "type": "blob", "sha": r["sha"]}
 
 
+def blob_sha(path: str) -> str:
+    """git 的 blob 对象 SHA：sha1("blob <len>\\0" + content)，与 GitHub 的 blob sha 一致。"""
+    import hashlib
+
+    with open(path, "rb") as f:
+        data = f.read()
+    h = hashlib.sha1()
+    h.update(f"blob {len(data)}\0".encode())
+    h.update(data)
+    return h.hexdigest()
+
+
+def remote_tree() -> dict[str, str]:
+    """远端当前 main 的文件 → blob sha，用于跳过没变化的文件。"""
+    try:
+        ref = call("GET", f"{API}/git/ref/heads/main")
+        sha = ref["object"]["sha"]
+        commit = call("GET", f"{API}/git/commits/{sha}")
+        tree = call("GET", f"{API}/git/trees/{commit['tree']['sha']}?recursive=1")
+        return {e["path"]: e["sha"] for e in tree.get("tree", []) if e["type"] == "blob"}
+    except RuntimeError:
+        return {}
+
+
 def main() -> None:
     files = tracked_files()
-    print(f"待上传 {len(files)} 个文件（并发 {WORKERS}）")
+    existing = remote_tree()
+    print(f"待同步 {len(files)} 个文件（远端已有 {len(existing)} 个）")
 
-    entries, failed = [], []
-    # 大文件（>2MB）单独串行上传：并发时 GitHub 会偶发 400 malformed request
-    big = [p for p in files if os.path.getsize(p) > 2 * 1024 * 1024]
-    rest = [p for p in files if p not in big]
+    entries, to_upload, failed = [], [], []
+    for p in files:
+        key = p.replace("\\", "/")
+        if existing.get(key) == blob_sha(p):
+            entries.append({"path": key, "mode": "100644", "type": "blob", "sha": existing[key]})
+        else:
+            to_upload.append(p)
+
+    print(f"需要上传 {len(to_upload)} 个（其余复用远端 blob）")
+    big = [p for p in to_upload if os.path.getsize(p) > 2 * 1024 * 1024]
+    rest = [p for p in to_upload if p not in big]
+    # 大文件串行 + 多试几次：并发或超时都会导致 400/连接重置
     for p in big:
-        try:
-            entries.append(make_blob(p))
-            print(f"  大文件已上传 {p}")
-        except Exception as e:  # noqa: BLE001
-            failed.append((p, str(e)[:120]))
+        for attempt in range(4):
+            try:
+                entries.append(make_blob(p))
+                print(f"  大文件已上传 {p}")
+                break
+            except Exception as e:  # noqa: BLE001
+                if attempt == 3:
+                    failed.append((p, str(e)[:120]))
+                else:
+                    time.sleep(3)
 
     done = 0
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
