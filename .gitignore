@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+
+# 运行时产物
+data/cache/
+*.log
+.dsh-office-*
+.tmp*
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 提交用的打包文件（源文件在 data/test_package/，脚本见 deliverables/提交清单.md）
+deliverables/*.zip

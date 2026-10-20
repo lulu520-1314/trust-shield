@@ -1,0 +1,9 @@
+{
+  "name": "美白对比图 · 高仿",
+  "scene": "post",
+  "text_file": "content.txt",
+  "images": [
+    "before.jpg",
+    "after.jpg"
+  ]
+}

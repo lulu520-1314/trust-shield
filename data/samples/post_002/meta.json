@@ -1,0 +1,9 @@
+{
+  "name": "真实测评 · 对照组",
+  "scene": "post",
+  "text_file": "content.txt",
+  "images": [
+    "before.jpg",
+    "after.jpg"
+  ]
+}

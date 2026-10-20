@@ -1,0 +1,12 @@
+# 统一换行，避免 Windows 下反复出现 CRLF 噪声
+* text=auto
+
+# Windows 批处理必须是 CRLF
+*.bat text eol=crlf
+
+# 二进制
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pptx binary
+*.zip binary

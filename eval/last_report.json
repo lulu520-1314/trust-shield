@@ -1,0 +1,514 @@
+{
+  "summary": {
+    "tp": 13,
+    "fp": 4,
+    "fn": 15,
+    "tn": 18,
+    "precision": 0.7647058823529411,
+    "recall": 0.4642857142857143,
+    "f1": 0.5777777777777777,
+    "iou_mean": 0.22591666666666668
+  },
+  "rows": [
+    {
+      "sample": "sample_001",
+      "scene": "post",
+      "truth": true,
+      "score": 0.425,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_002",
+      "scene": "post",
+      "truth": true,
+      "score": 0.881,
+      "level": "high",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_003",
+      "scene": "post",
+      "truth": true,
+      "score": 0.289,
+      "level": "low",
+      "pred": false,
+      "difficulty": "hard",
+      "iou": 0.592
+    },
+    {
+      "sample": "sample_004",
+      "scene": "post",
+      "truth": true,
+      "score": 0.386,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_005",
+      "scene": "post",
+      "truth": true,
+      "score": 0.405,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": 0.715
+    },
+    {
+      "sample": "sample_006",
+      "scene": "post",
+      "truth": true,
+      "score": 0.842,
+      "level": "high",
+      "pred": true,
+      "difficulty": "hard",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_007",
+      "scene": "post",
+      "truth": true,
+      "score": 0.673,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "easy",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_008",
+      "scene": "post",
+      "truth": true,
+      "score": 0.275,
+      "level": "low",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": 0.764
+    },
+    {
+      "sample": "sample_009",
+      "scene": "post",
+      "truth": true,
+      "score": 0.891,
+      "level": "high",
+      "pred": true,
+      "difficulty": "hard",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_010",
+      "scene": "post",
+      "truth": true,
+      "score": 0.425,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_011",
+      "scene": "post",
+      "truth": true,
+      "score": 0.842,
+      "level": "high",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": 0.0
+    },
+    {
+      "sample": "sample_012",
+      "scene": "post",
+      "truth": true,
+      "score": 0.661,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "hard",
+      "iou": 0.64
+    },
+    {
+      "sample": "sample_013",
+      "scene": "post",
+      "truth": false,
+      "score": 0.258,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_014",
+      "scene": "post",
+      "truth": false,
+      "score": 0.317,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_015",
+      "scene": "post",
+      "truth": false,
+      "score": 0.505,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_016",
+      "scene": "post",
+      "truth": false,
+      "score": 0.25,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_017",
+      "scene": "post",
+      "truth": false,
+      "score": 0.275,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_018",
+      "scene": "post",
+      "truth": false,
+      "score": 0.269,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_019",
+      "scene": "post",
+      "truth": false,
+      "score": 0.252,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_020",
+      "scene": "post",
+      "truth": false,
+      "score": 0.241,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_021",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.539,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_022",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.775,
+      "level": "high",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_023",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.698,
+      "level": "high",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_024",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.714,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_025",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.699,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_026",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.594,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_027",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.565,
+      "level": "high",
+      "pred": true,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_028",
+      "scene": "comments",
+      "truth": true,
+      "score": 0.487,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_029",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_030",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_031",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_032",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_033",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_034",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_035",
+      "scene": "comments",
+      "truth": false,
+      "score": 0.0,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_036",
+      "scene": "material",
+      "truth": true,
+      "score": 0.381,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": null
+    },
+    {
+      "sample": "sample_037",
+      "scene": "material",
+      "truth": true,
+      "score": 0.387,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_038",
+      "scene": "material",
+      "truth": true,
+      "score": 0.306,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": null
+    },
+    {
+      "sample": "sample_039",
+      "scene": "material",
+      "truth": true,
+      "score": 0.306,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_040",
+      "scene": "material",
+      "truth": true,
+      "score": 0.306,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "easy",
+      "iou": null
+    },
+    {
+      "sample": "sample_041",
+      "scene": "material",
+      "truth": true,
+      "score": 0.306,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_042",
+      "scene": "material",
+      "truth": true,
+      "score": 0.385,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_043",
+      "scene": "material",
+      "truth": true,
+      "score": 0.306,
+      "level": "medium",
+      "pred": false,
+      "difficulty": "medium",
+      "iou": null
+    },
+    {
+      "sample": "sample_044",
+      "scene": "material",
+      "truth": false,
+      "score": 0.509,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_045",
+      "scene": "material",
+      "truth": false,
+      "score": 0.602,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_046",
+      "scene": "material",
+      "truth": false,
+      "score": 0.169,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_047",
+      "scene": "material",
+      "truth": false,
+      "score": 0.161,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_048",
+      "scene": "material",
+      "truth": false,
+      "score": 0.509,
+      "level": "medium",
+      "pred": true,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_049",
+      "scene": "material",
+      "truth": false,
+      "score": 0.187,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    },
+    {
+      "sample": "sample_050",
+      "scene": "material",
+      "truth": false,
+      "score": 0.186,
+      "level": "low",
+      "pred": false,
+      "difficulty": "real",
+      "iou": null
+    }
+  ]
+}

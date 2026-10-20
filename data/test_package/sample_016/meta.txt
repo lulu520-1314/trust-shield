@@ -1,0 +1,9 @@
+sample_id: sample_016
+scene: 种草内容
+name: 种草图文-016
+is_fake: False
+fake_type: 
+difficulty: real
+has_mask: False
+source: Wikimedia Commons 公开皮肤特写（Hand skin close up / Human skin close-up）二次编辑
+layout: post/content.txt, post/image_1.jpg, post/image_2.jpg

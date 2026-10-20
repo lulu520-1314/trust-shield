@@ -1,0 +1,9 @@
+sample_id: sample_034
+scene: 评论区
+name: 评论区-034
+is_fake: False
+fake_type: 
+difficulty: real
+has_mask: False
+source: 自建：脚本模拟账号池与模板评论
+layout: comments.txt, post/content.txt
