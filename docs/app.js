@@ -522,7 +522,7 @@ function chartEl(id) {
 
 const AXIS = {
   axisLine: { lineStyle: { color: '#2a3b5c' } },
-  axisLabel: { color: '#8ea3c4', fontSize: 10 },
+  axisLabel: { color: '#a3b8d6', fontSize: 10 },
   splitLine: { lineStyle: { color: '#1b2740' } },
 };
 
@@ -568,7 +568,7 @@ function renderSemanticChart(rep) {
       barWidth: 9,
       itemStyle: { borderRadius: 4, color: '#4da3ff' },
       label: {
-        show: true, position: 'right', color: '#8ea3c4', fontSize: 10,
+        show: true, position: 'right', color: '#a3b8d6', fontSize: 10,
         formatter: (p) => (p.value < 0.005 ? '' : `${p.value} · ${pct(p.value)}%`),
       },
     }],
@@ -594,7 +594,7 @@ function renderCommentCharts(rep) {
     });
     c1.setOption({
       backgroundColor: 'transparent',
-      title: { text: '评论聚类分布', left: 8, top: 4, textStyle: { color: '#8ea3c4', fontSize: 12 } },
+      title: { text: '评论聚类分布', left: 8, top: 4, textStyle: { color: '#a3b8d6', fontSize: 12 } },
       grid: { left: 40, right: 16, top: 34, bottom: 28 },
       xAxis: { type: 'value', ...AXIS, scale: true },
       yAxis: { type: 'value', ...AXIS, scale: true },
@@ -602,7 +602,7 @@ function renderCommentCharts(rep) {
         name: k, type: 'scatter', data: groups[k], symbolSize: 9,
         itemStyle: { color: k === '正常' ? '#3a5a86' : '#ff4d6d', opacity: 0.85 },
       })),
-      legend: { textStyle: { color: '#8ea3c4', fontSize: 10 }, top: 2, right: 8 },
+      legend: { textStyle: { color: '#a3b8d6', fontSize: 10 }, top: 2, right: 8 },
       tooltip: { trigger: 'item' },
     });
     S.charts.push(c1);
@@ -613,7 +613,7 @@ function renderCommentCharts(rep) {
     c2.setOption({
       backgroundColor: 'transparent',
       title: { text: '发布时间分布 · ' + (b.timing?.verdict || ''), left: 8, top: 4,
-               textStyle: { color: '#8ea3c4', fontSize: 12 } },
+               textStyle: { color: '#a3b8d6', fontSize: 12 } },
       grid: { left: 46, right: 16, top: 34, bottom: 28 },
       xAxis: { type: 'category', data: b.timeline.map((t) => t.t.slice(5, 16)), ...AXIS,
                axisLabel: { ...AXIS.axisLabel, rotate: 35, interval: Math.ceil(b.timeline.length / 7) } },
