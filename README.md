@@ -66,6 +66,11 @@
 
 > **在线演示（只读）**：<https://lulu520-1314.github.io/trust-shield/>
 > 这是预生成结果的静态版，5 组样例可切换查看；**不能上传自己的图片**，完整功能请按下面的方式本地运行。
+>
+> 想在公网地址上也能上传图片？点下面的按钮把后端部署到 Render 免费档（约 10 分钟）：
+>
+> [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/lulu520-1314/trust-shield)
+> 详见 [docs/在线部署.md](docs/在线部署.md)。
 
 ```bash
 # 1. 安装依赖（Python 3.10+，只需一次）
