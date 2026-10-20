@@ -151,7 +151,7 @@ def s01_cover(prs):
          "一个基于像素级证据链的美妆内容核验 Agent：不只告诉你「像假的」，\n而是告诉你「哪一块、凭什么、违反了哪一条」。",
          size=14, color=MUTED, line_spacing=1.6)
 
-    for i, (k, v, c) in enumerate([("四层", "取证维度", BLUE), ("3 场景", "统一架构", GREEN),
+    for i, (k, v, c) in enumerate([("五维", "取证维度", BLUE), ("3 场景", "统一架构", GREEN),
                                   ("< 4s", "本地 CPU 推理", AMBER), ("100%", "证据可回溯", RED)]):
         x = 0.9 + i * 2.25
         panel(s, x, 5.55, 2.0, 1.0)
@@ -260,10 +260,12 @@ def s04_arch(prs):
            ("  ·  ", 13, DIM, False), ("处置建议", 13, WHITE, True)]],
          line_spacing=1.5)
 
-    text(s, 0.75, 5.68, 11.8, 1.0,
-         "固定 DAG 编排（非自由 ReAct）：场景识别 → 并行取证 → 融合定级 → 生成结论。\n"
-         "演示现场不会出现循环调用、幻觉工具、耗时不可控——这是作品赛最容易翻车的地方。",
-         size=11, color=MUTED, line_spacing=1.7)
+    text(s, 0.75, 5.58, 11.8, 1.3,
+         "固定 DAG 编排（非自由 ReAct）：场景识别 → 并行取证 → 融合定级 → 生成结论，"
+         "演示现场不会出现循环调用、幻觉工具、耗时不可控。\n"
+         "为什么不上大模型做判定：黑盒模型给不出可核对的数值证据，跨生成器泛化也差；"
+         "本项目坚持「每个结论都能反推」，大模型（Qwen2.5-VL）放在第二期做语义复核。",
+         size=10.5, color=MUTED, line_spacing=1.6)
     footer(s, 4)
 
 
@@ -355,7 +357,7 @@ def s08_rules(prs):
     rows = [
         ("绝对化用语", "「全网最低价」", "《广告法》第九条", "不得使用国家级、最高级、最佳等用语"),
         ("特殊化妆品未标批号", "「美白」", "《化妆品监督管理条例》第十六条", "美白祛斑等须标注国妆特字注册编号"),
-        ("时限性功效承诺", "「立竿见影」", "《化妆品功效宣称评价规范》", "功效宣称应有评价依据"),
+        ("量化功效承诺缺乏依据", "「立竿见影」", "《化妆品功效宣称评价规范》", "功效宣称应有评价依据"),
         ("宣称医疗作用", "「消炎」「药妆」", "《化妆品监督管理条例》第四十三条", "化妆品不得明示或暗示医疗作用"),
     ]
     y = 2.05
@@ -399,9 +401,62 @@ def s09_product(prs):
     footer(s, 9)
 
 
+def s10_dataset(prs):
+    s = blank(prs)
+    kicker(s, "09  测试数据包", GREEN)
+    title(s, "我们连测试数据一起交：50 条，覆盖三场景与三档难度",
+          "赛题看的不只是跑分，而是这份数据本身经不经得起看")
+    rule(s)
+
+    # 左：构成
+    panel(s, 0.75, 2.18, 5.9, 3.15)
+    text(s, 1.0, 2.30, 5.4, 0.35, "样本构成", size=11.5, color=DIM, bold=True)
+    rows = [
+        ("场景", "种草 20　·　评论 15　·　素材 15"),
+        ("真伪", "伪造 28　·　真实 22"),
+        ("难度", "easy 7　·　medium 17　·　hard 4　·　real 22"),
+        ("标注", "12 张 mask.png（逐像素篡改区域）"),
+    ]
+    y = 2.75
+    for k, v in rows:
+        text(s, 1.0, y, 1.0, 0.3, k, size=10, color=MUTED)
+        text(s, 1.75, y, 4.7, 0.3, v, size=10.5, color=WHITE, bold=True)
+        y += 0.62
+
+    # 右：伪造手法
+    panel(s, 6.85, 2.18, 5.7, 3.15, color=RGBColor(0x0F, 0x1A, 0x2B))
+    text(s, 7.1, 2.30, 5.2, 0.35, "五类伪造手法（不是同一种东西做五遍）", size=11.5, color=DIM, bold=True)
+    kinds = [
+        ("大面积磨皮 + 提亮", "4 条"),
+        ("局部磨皮 + 拼接", "4 条"),
+        ("轻度磨皮 + 拼接 + 重压缩", "4 条"),
+        ("重度平滑 + 色彩拉伸（模拟 AIGC 重绘）", "8 条"),
+        ("模板化评论 + 短时间集中投放", "8 条"),
+    ]
+    y = 2.75
+    for name, cnt in kinds:
+        text(s, 7.1, y, 4.3, 0.3, "· " + name, size=10, color=RGBColor(0xC9, 0xD8, 0xEF))
+        text(s, 11.35, y, 0.9, 0.3, cnt, size=10, color=AMBER, bold=True, align=PP_ALIGN.RIGHT)
+        y += 0.48
+
+    # 底：目录结构 + 说明
+    panel(s, 0.75, 5.50, 7.4, 1.15, color=RGBColor(0x0B, 0x14, 0x22))
+    text(s, 0.95, 5.60, 7.0, 0.95,
+         "sample_001/\n"
+         "  ├ meta.txt     场景 / 真伪 / 难度 / 伪造方式\n"
+         "  ├ mask.png     篡改区域（仅图片类样本）\n"
+         "  └ post/        content.txt + image_1.jpg + image_2.jpg",
+         size=8.5, color=MUTED, line_spacing=1.5)
+
+    text(s, 8.35, 5.62, 4.2, 1.0,
+         "每条样本都能复现：\n把 meta.txt 的字段喂给 eval/run_eval.py，\n就能重算出 PPT 里的所有指标。",
+         size=9.5, color=RGBColor(0x9F, 0xC8, 0xFF), line_spacing=1.6)
+    footer(s, 10)
+
+
 def s10_eval(prs):
     s = blank(prs)
-    kicker(s, "09  效果与严谨性")
+    kicker(s, "10  效果与严谨性")
     title(s, "我们交的不只是系统，还有一套可复现的评测", "50 条自建样本，真伪 28:22，带 ground-truth mask")
     rule(s)
 
@@ -434,16 +489,16 @@ def s10_eval(prs):
          "评测方法：样本级 Precision / Recall 以 0.5 分为阈值；定位 IoU 用系统输出的可疑区域二值化后与 mask.png 对比。\n"
          "数据包里同时包含真实样本，就是为了检验系统会不会「见谁都像假的」——正是这一步暴露了上面的误报。",
          size=11, color=MUTED, line_spacing=1.75)
-    footer(s, 10)
+    footer(s, 11)
 
 
 def s11_value(prs):
     s = blank(prs)
-    kicker(s, "10  落地价值")
+    kicker(s, "11  落地价值")
     title(s, "从「事后举报」变成「事前拦截」", "")
     rule(s)
 
-    steps = [("抽检", "每天 5% 内容\n自动过一遍"), ("核验", "四层证据链\n2–4 秒出结论"),
+    steps = [("抽检", "每天 5% 内容\n自动过一遍"), ("核验", "五维证据链\n2–4 秒出结论"),
              ("分级", "高危下架\n中危限流"), ("申诉", "证据包直接\n回传创作者")]
     x = 0.75
     for i, (k, v) in enumerate(steps):
@@ -466,12 +521,12 @@ def s11_value(prs):
     text(s, 0.75, 5.95, 11.8, 0.8,
          "合规是刚需：市场监管总局对化妆品功效宣称的专项整治一直在进行，平台侧的审核压力是真实存在的。",
          size=11, color=DIM, line_spacing=1.6)
-    footer(s, 11)
+    footer(s, 12)
 
 
 def s12_roadmap(prs):
     s = blank(prs)
-    kicker(s, "11  未来规划")
+    kicker(s, "12  未来规划")
     title(s, "三条线把这个 Demo 变成产品", "")
     rule(s)
 
@@ -493,7 +548,7 @@ def s12_roadmap(prs):
          [[("我们相信：", 13, GREEN, True),
            ("「内容可信度」会成为和「内容安全」同等重要的基础设施——而它的前提，是每一个判断都能被解释。", 13, WHITE, False)]],
          line_spacing=1.5)
-    footer(s, 12)
+    footer(s, 13)
 
 
 def main() -> None:
@@ -508,6 +563,7 @@ def main() -> None:
     s07_comments(prs)
     s08_rules(prs)
     s09_product(prs)
+    s10_dataset(prs)
     s10_eval(prs)
     s11_value(prs)
     s12_roadmap(prs)
