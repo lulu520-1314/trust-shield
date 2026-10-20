@@ -1,0 +1,9 @@
+sample_id: sample_091
+scene: AI 生成素材
+name: AI素材-091
+is_fake: False
+fake_type: 
+difficulty: real
+has_mask: False
+source: Wikimedia Commons 公开皮肤特写二次编辑
+layout: post/content.txt, post/image_1.jpg

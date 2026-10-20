@@ -1,9 +1,9 @@
 sample_id: sample_041
-scene: AI 生成素材
-name: AI素材-041
+scene: 评论区
+name: 评论区-041
 is_fake: True
-fake_type: 重度平滑 + 色彩拉伸（模拟 AIGC 生成/重绘）
+fake_type: 批量灌水：模板化评论 + 短时间集中投放
 difficulty: medium
 has_mask: False
-source: Wikimedia Commons 公开皮肤特写二次编辑
-layout: post/content.txt, post/image_1.jpg
+source: 自建：脚本模拟账号池与模板评论
+layout: comments.txt, post/content.txt

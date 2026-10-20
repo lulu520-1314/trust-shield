@@ -382,22 +382,22 @@ def main() -> None:
     metas = []
     idx = 1
 
-    # 20 条图文：12 伪造 / 8 真实
-    for k in range(20):
-        fake = k < 12
+    # 40 条图文：24 伪造 / 16 真实
+    for k in range(40):
+        fake = k < 24
         diff = ["easy", "medium", "hard"][k % 3] if fake else "real"
         metas.append(write_post(OUT, idx, f"种草图文-{idx:03d}", fake, diff, rng, bases))
         idx += 1
 
-    # 15 条评论：8 伪造 / 7 真实
-    for k in range(15):
-        fake = k < 8
+    # 30 条评论：16 伪造 / 14 真实
+    for k in range(30):
+        fake = k < 16
         metas.append(write_comments(OUT, idx, f"评论区-{idx:03d}", fake, rng))
         idx += 1
 
-    # 15 条素材：8 伪造 / 7 真实
-    for k in range(15):
-        fake = k < 8
+    # 30 条素材：16 伪造 / 14 真实
+    for k in range(30):
+        fake = k < 16
         metas.append(write_material(OUT, idx, f"AI素材-{idx:03d}", fake, rng, bases))
         idx += 1
 

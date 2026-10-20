@@ -1,0 +1,9 @@
+sample_id: sample_072
+scene: AI 生成素材
+name: AI素材-072
+is_fake: True
+fake_type: 重度平滑 + 色彩拉伸（模拟 AIGC 生成/重绘）
+difficulty: easy
+has_mask: False
+source: Wikimedia Commons 公开皮肤特写二次编辑
+layout: post/content.txt, post/image_1.jpg

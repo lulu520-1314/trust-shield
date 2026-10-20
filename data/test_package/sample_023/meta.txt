@@ -1,9 +1,9 @@
 sample_id: sample_023
-scene: 评论区
-name: 评论区-023
+scene: 种草内容
+name: 种草图文-023
 is_fake: True
-fake_type: 批量灌水：模板化评论 + 短时间集中投放
+fake_type: 局部磨皮+拼接
 difficulty: medium
-has_mask: False
-source: 自建：脚本模拟账号池与模板评论
-layout: comments.txt, post/content.txt
+has_mask: True
+source: Wikimedia Commons 公开皮肤特写（Hand skin close up / Human skin close-up）二次编辑
+layout: post/content.txt, post/image_1.jpg, post/image_2.jpg

@@ -1,0 +1,9 @@
+sample_id: sample_051
+scene: 评论区
+name: 评论区-051
+is_fake: True
+fake_type: 批量灌水：模板化评论 + 短时间集中投放
+difficulty: medium
+has_mask: False
+source: 自建：脚本模拟账号池与模板评论
+layout: comments.txt, post/content.txt
