@@ -20,3 +20,5 @@ Thumbs.db
 
 # 提交用的打包文件（源文件在 data/test_package/，脚本见 deliverables/提交清单.md）
 deliverables/*.zip
+
+deliverables/测试数据包/
