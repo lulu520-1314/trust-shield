@@ -458,7 +458,7 @@ def clear_cover(slide):
 
     for text, size, bold in [
         ("让「眼见为实」重新变得可验证", 30, False),
-        ("赛题 2 · 美妆内容真实性核验　　队伍：待填写", 20, False),
+        ("赛题 2 · 美妆内容真实性核验　　队伍：噜噜大王", 20, False),
     ]:
         p2 = tf.add_paragraph()
         p2.space_before = Pt(10)
