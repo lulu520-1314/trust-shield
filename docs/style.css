@@ -64,7 +64,7 @@ main {
   border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow);
 }
 .card h3 {
-  margin: 0; padding: 12px 14px 8px; font-size: 12.5px; font-weight: 600;
+  margin: 0; padding: 10px 14px 6px; font-size: 12.5px; font-weight: 600;
   color: var(--muted); letter-spacing: .6px; text-transform: uppercase;
 }
 .scroll { overflow-y: auto; }
@@ -85,7 +85,7 @@ main {
 }
 textarea {
   width: calc(100% - 24px); margin: 0 12px 10px;
-  min-height: 150px; max-height: 420px; resize: vertical;
+  min-height: 150px; max-height: 58vh; resize: vertical;
   background: #0d1526; color: var(--text); border: 1px solid var(--border);
   border-radius: 10px; padding: 10px 12px; font-size: 13px; line-height: 1.65;
   font-family: inherit;
@@ -156,7 +156,7 @@ input[type=range] { width: 84px; accent-color: #4da3ff; }
 .bar { height: 6px; border-radius: 4px; background: #1a2742; overflow: hidden; }
 .bar > i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #4da3ff, #3ddc97); }
 
-.narrative { padding: 0 14px 4px; font-size: 11.8px; line-height: 1.52; color: #d6e3f7; }
+.narrative { padding: 0 14px 2px; font-size: 11.4px; line-height: 1.48; color: #d6e3f7; }
 .narrative b { color: #fff; }
 
 .hits { padding: 0 12px 10px; display: flex; flex-direction: column; gap: 6px; }
@@ -167,7 +167,7 @@ input[type=range] { width: 84px; accent-color: #4da3ff; }
 .hit .v { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.55; }
 
 .chat { margin-top: auto; }
-.msgs { max-height: 92px; overflow-y: auto; padding: 6px 12px; display: flex; flex-direction: column; gap: 8px; }
+.msgs { max-height: 78px; overflow-y: auto; padding: 6px 12px; display: flex; flex-direction: column; gap: 8px; }
 .msg { font-size: 12px; line-height: 1.65; padding: 8px 10px; border-radius: 10px; }
 .msg.user { align-self: flex-end; background: #1d3a63; }
 .msg.bot { background: #121d33; color: #c3d3ea; border: 1px solid #1e2c47; }
@@ -285,6 +285,27 @@ input[type=range] { width: 84px; accent-color: #4da3ff; }
 .doc-btn:hover { border-color: #4da3ff; color: #cfe6ff; }
 .doc-btn:disabled { opacity: .5; cursor: default; }
 textarea.drop-hover { border-color: #4da3ff; background: #12213a; }
+
+/* 卡片折叠 */
+.card-h { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+.card-h .fold {
+  width: 22px; height: 22px; flex: none; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--border); background: #0f1a2d; color: var(--muted);
+  font-size: 14px; line-height: 1; padding: 0;
+}
+.card-h .fold:hover { border-color: var(--accent); color: #fff; }
+.card.collapsed .card-body { display: none; }
+.card.collapsed { flex: 0 0 auto !important; min-height: 0 !important; }
+
+/* 图片槽位：填入后出现删除按钮 */
+.drop .del {
+  position: absolute; top: 6px; right: 6px; z-index: 3;
+  width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255, 90, 120, .55); background: rgba(20, 8, 14, .82);
+  color: #ff8fa3; font-size: 14px; line-height: 1; padding: 0;
+}
+.drop .del:hover { background: rgba(255, 77, 109, .28); color: #fff; }
+.drop { position: relative; }
 
 /* ---- 静态演示版 ---- */
 .demo-banner {

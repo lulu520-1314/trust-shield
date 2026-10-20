@@ -107,33 +107,45 @@
 
   <!-- 右：结论 -->
   <div class="col">
-    <div class="card">
-      <h3>③ 风险评定</h3>
-      <div class="gauge-wrap">
-        <svg class="gauge" id="gauge" viewBox="0 0 140 82"></svg>
-        <div>
-          <div class="risk-title" id="riskLabel">—</div>
-          <div class="risk-sub" id="riskSub">等待核验</div>
+    <div class="card" id="cardRisk">
+      <h3 class="card-h"><span>③ 风险评定</span>
+        <button class="fold" type="button" data-fold aria-expanded="true" title="折叠 / 展开">−</button>
+      </h3>
+      <div class="card-body">
+        <div class="gauge-wrap">
+          <svg class="gauge" id="gauge" viewBox="0 0 140 82"></svg>
+          <div>
+            <div class="risk-title" id="riskLabel">—</div>
+            <div class="risk-sub" id="riskSub">等待核验</div>
+          </div>
         </div>
+        <div class="bars" id="bars"></div>
       </div>
-      <div class="bars" id="bars"></div>
     </div>
 
-    <div class="card scroll" style="flex:1; min-height:0">
-      <h3>判定依据</h3>
-      <div class="narrative" id="narrative">—</div>
-      <div class="hits" id="hits"></div>
+    <div class="card scroll" id="cardWhy" style="flex:1; min-height:0">
+      <h3 class="card-h"><span>判定依据</span>
+        <button class="fold" type="button" data-fold aria-expanded="true" title="折叠 / 展开">−</button>
+      </h3>
+      <div class="card-body" style="display:flex;flex-direction:column;min-height:0">
+        <div class="narrative" id="narrative">—</div>
+        <div class="hits" id="hits"></div>
+      </div>
     </div>
 
-    <div class="card chat">
-      <h3>对话式核验助手</h3>
-      <div class="msgs" id="msgs">
-        <div class="msg bot">核验完成后可直接提问，或点下方建议。</div>
-      </div>
-      <div class="askchips" id="askChips"></div>
-      <div class="ask">
-        <input id="askInput" placeholder="自由提问，例如「为什么判这个等级」" disabled />
-        <button id="askBtn" disabled>发送</button>
+    <div class="card chat" id="cardChat">
+      <h3 class="card-h"><span>对话式核验助手</span>
+        <button class="fold" type="button" data-fold aria-expanded="true" title="折叠 / 展开">−</button>
+      </h3>
+      <div class="card-body">
+        <div class="msgs" id="msgs">
+          <div class="msg bot">核验完成后可直接提问，或点下方建议。</div>
+        </div>
+        <div class="askchips" id="askChips"></div>
+        <div class="ask">
+          <input id="askInput" placeholder="自由提问，例如「为什么判这个等级」" disabled />
+          <button id="askBtn" disabled>发送</button>
+        </div>
       </div>
     </div>
   </div>

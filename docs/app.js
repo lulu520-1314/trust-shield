@@ -22,6 +22,7 @@ const $$ = (s) => Array.from(document.querySelectorAll(s));
 async function init() {
   bindTabs();
   bindSlots();
+  bindFold();
   bindRun();
   bindChat();
   bindToolbar();
@@ -140,6 +141,22 @@ function reset() {
 }
 
 /* ---------------------------------------------------------------- 图片槽位 */
+function bindFold() {
+  document.querySelectorAll('.card-h').forEach((h) => {
+    h.addEventListener('click', (e) => {
+      if (e.target.closest('input, textarea, button:not(.fold)')) return;
+      const card = h.closest('.card');
+      const collapsed = card.classList.toggle('collapsed');
+      const btn = h.querySelector('.fold');
+      if (btn) {
+        btn.textContent = collapsed ? '+' : '−';
+        btn.setAttribute('aria-expanded', String(!collapsed));
+        btn.title = collapsed ? '展开' : '折叠';
+      }
+    });
+  });
+}
+
 function bindSlots() {
   [0, 1].forEach((i) => {
     const el = $(`#slot${i === 0 ? 'A' : 'B'}`);
@@ -172,6 +189,31 @@ function setFile(i, file) {
   const img = document.createElement('img');
   img.src = URL.createObjectURL(file);
   el.prepend(img);
+
+  // 填入后给一个删除按钮，点它清空这一格
+  let del = el.querySelector('.del');
+  if (!del) {
+    del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'del';
+    del.title = '移除这张图';
+    del.textContent = '×';
+    el.appendChild(del);
+  }
+  del.onclick = (e) => {
+    e.stopPropagation();
+    clearSlot(i);
+  };
+}
+
+function clearSlot(i) {
+  S.files[i] = null;
+  const el = $(`#slot${i === 0 ? 'A' : 'B'}`);
+  if (!el) return;
+  el.querySelector('img')?.remove();
+  el.querySelector('.del')?.remove();
+  el.querySelector('.ph')?.classList.remove('hide');
+  el.querySelector('.tag')?.classList.add('hide');
 }
 
 /* ---------------------------------------------------------------- 运行 */
